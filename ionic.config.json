@@ -1,0 +1,7 @@
+{
+  "name": "Learning_Assistant",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}
