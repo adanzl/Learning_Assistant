@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-input placeholder="标题："></ion-input>
+    <ion-input placeholder="标题：" [(ngModel)]="task_title"></ion-input>
     <ion-buttons right>
       <button ion-button icon-only (click)="Submit()">
         <ion-icon name="md-checkmark-circle-outline"></ion-icon>
@@ -22,5 +22,5 @@
 
 
 <ion-content padding>
-    <ion-textarea placeholder="内容："></ion-textarea>
+    <ion-textarea placeholder="内容：" [(ngModel)]="task_content"></ion-textarea>
 </ion-content>

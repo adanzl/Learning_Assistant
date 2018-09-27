@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
-import { AddTaskPage } from './add-task';
+import { TaskListPage } from './task-list';
 
 @NgModule({
   declarations: [
-    AddTaskPage,
+    TaskListPage,
   ],
   imports: [
-    IonicPageModule.forChild(AddTaskPage),
+    IonicPageModule.forChild(TaskListPage),
   ],
 })
-export class AddTaskPageModule {}
+export class TaskListPageModule {}
