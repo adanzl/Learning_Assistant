@@ -22,7 +22,12 @@ export class HomePage {
    * showAddTaskPage
    */
   public showAddTaskPage() {
-    const modal = this.modalCtrl.create('TaskAddPage');
+    const modal = this.modalCtrl.create('TaskDetailPage');
+    modal.present();
+  }
+
+  public showTaskDetail(taskNode) {
+    const modal = this.modalCtrl.create('TaskDetailPage', { 'taskNode': taskNode });
     modal.present();
   }
 
@@ -30,12 +35,9 @@ export class HomePage {
     this.RefreshPage()
   }
 
-  RefreshPage() {
+  public RefreshPage() {
     const taskList = this.dataProvider.GetTaskList()
     this.undoTaskList
   }
 
-  showTaskDetail(taskNode) {
-
-  }
 }

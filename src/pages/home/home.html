@@ -4,11 +4,6 @@
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title left>Home</ion-title>
-    <ion-buttons right>
-      <button ion-button icon-only (click) = "showAddTaskPage()">
-        <ion-icon name="md-add-circle"></ion-icon>
-      </button>
-    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
@@ -23,3 +18,11 @@
 
   <button ion-button secondary menuToggle>Toggle Menu</button> -->
 </ion-content>
+<ion-footer>
+    <ion-buttons center>
+        <button ion-button class="button-full" (click) = "showAddTaskPage()">
+          <ion-icon name="md-add-circle"></ion-icon>
+          <ion-label>Add Task</ion-label>
+        </button>
+      </ion-buttons>
+</ion-footer>

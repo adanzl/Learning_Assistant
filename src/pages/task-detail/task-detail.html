@@ -6,13 +6,29 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>taskDetail</ion-title>
+  <ion-navbar padding-horizontal>
+    <ion-input placeholder="标题：" [(ngModel)]="task_title"></ion-input>
+    <ion-buttons right>
+      <button ion-button icon-only (click)="Del()" *ngIf="_taskNode != null">
+        <ion-icon name="md-close-circle"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-
+  <ion-label>{{task_time_label}}</ion-label>
+  <ion-textarea no-padding placeholder="内容：" [(ngModel)]="task_content"></ion-textarea>
 </ion-content>
+<ion-footer>
+  <ion-buttons>
+    <button ion-button class="button-full" (click)="Submit()">
+      Apply
+    </button>
+    <button ion-button class="button-full" (click)="Close(false)">
+      Close
+    </button>
+  </ion-buttons>
+</ion-footer>

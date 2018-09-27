@@ -3,13 +3,13 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>List</ion-title>
+    <ion-title left>Task List</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
   <ion-list>
-    <button ion-item *ngFor="let task of taskList" (click)="itemTapped($event, task)">
+    <button ion-item *ngFor="let task of taskList" (click)="showTaskDetail(task)">
       {{task.title}}
       <div class="item-note" item-end>
         {{task.create_time}}
@@ -17,3 +17,11 @@
     </button>
   </ion-list>
 </ion-content>
+<ion-footer>
+  <ion-buttons center>
+    <button ion-button class="button-full" (click)="showAddTaskPage()">
+      <ion-icon name="md-add-circle"></ion-icon>
+      <ion-label>Add Task</ion-label>
+    </button>
+  </ion-buttons>
+</ion-footer>
