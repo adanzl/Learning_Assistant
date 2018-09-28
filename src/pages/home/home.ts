@@ -39,13 +39,23 @@ export class HomePage {
     const taskList = this.dataProvider.GetTaskList()
     this.undoTaskList = [];
     this.finishTaskList = [];
+    const config = this.configProvider.GetConfig();
     for (var taskId in taskList) {
-      this.undoTaskList.push(taskList[taskId])
+      let task = taskList[taskId]
+      let taskCreateTime = new Date(Number(task['create_time']))
+      let nextRemindDate = taskCreateTime.getDate() + config[task['learn_step']]
+      if (nextRemindDate > new Date().getDate()) {
+        this.undoTaskList.push()
+      }
     }
   }
 
   public UpdateTaskState(task, finished) {
-    
+
+  }
+
+  CaculateTheDays(before, after) {
+
   }
 
 }

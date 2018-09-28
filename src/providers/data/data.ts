@@ -19,14 +19,17 @@ export class DataProvider {
   private Load() {
     const dataStr = localStorage.getItem('save');
     this.dataSet = JSON.parse(dataStr);
-    console.log(this.dataSet)
-    if( this.dataSet == null){
+    if (this.dataSet == null) {
       this.dataSet = {}
     }
   }
 
   Save() {
     const dataStr = JSON.stringify(this.dataSet)
+    localStorage.setItem('save', dataStr);
+  }
+
+  SetSave(dataStr) {
     localStorage.setItem('save', dataStr);
   }
 
