@@ -8,21 +8,30 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-item *ngFor="let task of undoTaskList" (click)="showTaskDetail(task)" >{{task}}</ion-item>
-  <ion-item *ngFor="let task of finishTaskList" (click)="showTaskDetail(task)" >{{task}}</ion-item>
-  <!-- <h3>Ionic Menu Starter</h3>
-
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.
-  </p>
-
-  <button ion-button secondary menuToggle>Toggle Menu</button> -->
+  <ion-label>TODO</ion-label>
+  <ion-row *ngFor="let task of undoTaskList">
+    <ion-col col-2>
+      <ion-item>
+        <ion-checkbox checked='false' (ionChange)="UpdateTaskState(task, true)"></ion-checkbox>
+      </ion-item>
+    </ion-col>
+    <ion-col>
+      <ion-item>
+        <ion-label (click)="showTaskDetail(task)">{{task.title}}</ion-label>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  <ion-label>FNISHED</ion-label>
+  <ion-item *ngFor="let task of finishTaskList">
+    <ion-checkbox checked (ionChange)="UpdateTaskState(task, false)"></ion-checkbox>
+    <ion-label (click)="showTaskDetail(task)">{{task.title}}</ion-label>
+  </ion-item>
 </ion-content>
 <ion-footer>
-    <ion-buttons center>
-        <button ion-button class="button-full" (click) = "showAddTaskPage()">
-          <ion-icon name="md-add-circle"></ion-icon>
-          <ion-label>Add Task</ion-label>
-        </button>
-      </ion-buttons>
+  <ion-buttons center>
+    <button ion-button class="button-full" (click)="showAddTaskPage()">
+      <ion-icon name="md-add-circle"></ion-icon>
+      <ion-label>Add Task</ion-label>
+    </button>
+  </ion-buttons>
 </ion-footer>

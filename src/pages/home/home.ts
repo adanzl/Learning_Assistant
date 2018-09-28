@@ -37,7 +37,15 @@ export class HomePage {
 
   public RefreshPage() {
     const taskList = this.dataProvider.GetTaskList()
-    this.undoTaskList
+    this.undoTaskList = [];
+    this.finishTaskList = [];
+    for (var taskId in taskList) {
+      this.undoTaskList.push(taskList[taskId])
+    }
+  }
+
+  public UpdateTaskState(task, finished) {
+    
   }
 
 }
