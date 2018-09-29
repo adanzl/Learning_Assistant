@@ -3,6 +3,7 @@ import { NavController } from 'ionic-angular';
 import { ModalController, IonicPage } from 'ionic-angular';
 import { DataProvider } from '../../providers/data/data';
 import { ConfigProvider } from '../../providers/config/config';
+import { UtilsProvider } from '../../providers/utils/utils';
 
 @IonicPage()
 @Component({
@@ -14,7 +15,8 @@ export class HomePage {
   finishTaskList: any[];
 
   constructor(public navCtrl: NavController, public modalCtrl: ModalController
-    , public dataProvider: DataProvider, public configProvider: ConfigProvider) {
+    , public dataProvider: DataProvider, public configProvider: ConfigProvider
+    , public utils: UtilsProvider) {
 
   }
 
@@ -23,6 +25,11 @@ export class HomePage {
    */
   public showAddTaskPage() {
     const modal = this.modalCtrl.create('TaskDetailPage');
+    modal.onDidDismiss(bNeedRefresh => {
+      if (bNeedRefresh) {
+        this.ionViewDidLoad()
+      }
+    });
     modal.present();
   }
 
@@ -32,7 +39,9 @@ export class HomePage {
   }
 
   ionViewDidLoad() {
-    this.RefreshPage()
+    this.configProvider.Load().then(() => {
+      this.RefreshPage()
+    });
   }
 
   public RefreshPage() {
@@ -40,22 +49,30 @@ export class HomePage {
     this.undoTaskList = [];
     this.finishTaskList = [];
     const config = this.configProvider.GetConfig();
+    const timeline = config['timeline']
     for (var taskId in taskList) {
       let task = taskList[taskId]
       let taskCreateTime = new Date(Number(task['create_time']))
-      let nextRemindDate = taskCreateTime.getDate() + config[task['learn_step']]
-      if (nextRemindDate > new Date().getDate()) {
-        this.undoTaskList.push()
+      let nextRemindDate = this.utils.AddDate(taskCreateTime, timeline[task['learn_step']])
+      if (nextRemindDate <= new Date()) {
+        this.undoTaskList.push(task);
+      } else {
+        this.finishTaskList.push(task);
       }
     }
   }
 
   public UpdateTaskState(task, finished) {
-
-  }
-
-  CaculateTheDays(before, after) {
-
+    let step = task['learn_step']
+    if (finished) {
+      task['learn_step'] = step + 1
+      task['learn_time'] = new Date().getTime().toString();
+    } else {
+      task['learn_step'] = step - 1
+      // task['learn_time'] = new Date().getTime().toString();
+    }
+    this.dataProvider.Save();
+    this.RefreshPage();
   }
 
 }

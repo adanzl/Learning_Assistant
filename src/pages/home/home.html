@@ -22,10 +22,18 @@
     </ion-col>
   </ion-row>
   <ion-label>FNISHED</ion-label>
-  <ion-item *ngFor="let task of finishTaskList">
-    <ion-checkbox checked (ionChange)="UpdateTaskState(task, false)"></ion-checkbox>
-    <ion-label (click)="showTaskDetail(task)">{{task.title}}</ion-label>
-  </ion-item>
+  <ion-row *ngFor="let task of finishTaskList">
+    <ion-col col-2>
+      <ion-item>
+        <ion-checkbox checked='true' (ionChange)="UpdateTaskState(task, false)"></ion-checkbox>
+      </ion-item>
+    </ion-col>
+    <ion-col>
+      <ion-item>
+        <ion-label (click)="showTaskDetail(task)">{{task.title}}</ion-label>
+      </ion-item>
+    </ion-col>
+  </ion-row>
 </ion-content>
 <ion-footer>
   <ion-buttons center>

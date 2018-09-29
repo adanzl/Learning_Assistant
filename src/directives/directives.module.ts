@@ -1,11 +1,8 @@
 import { NgModule } from '@angular/core';
 import { AutosizeDirective } from './autosize/autosize';
-import { ElasticDirective } from './elastic/elastic';
 @NgModule({
-	declarations: [AutosizeDirective,
-    ElasticDirective],
-	imports: [],
-	exports: [AutosizeDirective,
-    ElasticDirective]
+  declarations: [AutosizeDirective],
+  imports: [],
+  exports: [AutosizeDirective]
 })
-export class DirectivesModule {}
+export class DirectivesModule { }

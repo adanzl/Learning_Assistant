@@ -28,6 +28,8 @@ export class TaskDetailPage {
 
   private task_create_time: string = new Date().getTime().toString();
 
+  private task_learn_time: string;
+
   private task_time_label: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController
@@ -38,7 +40,8 @@ export class TaskDetailPage {
       this.task_title = this._taskNode['title'];
       this.task_content = this._taskNode['content'];
       this.task_learn_step = this._taskNode['learn_step'];
-      this.task_create_time = this._taskNode['create_time']
+      this.task_create_time = this._taskNode['create_time'];
+      this.task_learn_time = this._taskNode['learn_time'];
     }
     this.task_time_label = new Date(Number(this.task_create_time)).toLocaleDateString();
   }
@@ -82,6 +85,7 @@ export class TaskDetailPage {
       "title": this.task_title,
       "content": this.task_content,
       "learn_step": this.task_learn_step,
+      "learn_time": this.task_learn_time,
       "create_time": this.task_create_time
     }
     if (this.task_id != null) {

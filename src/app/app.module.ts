@@ -11,6 +11,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { DataProvider } from '../providers/data/data';
 import { ConfigProvider } from '../providers/config/config';
 import { DirectivesModule } from '../directives/directives.module';
+import { LoadingProvider } from '../providers/loading/loading';
+import { UtilsProvider } from '../providers/utils/utils';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import { DirectivesModule } from '../directives/directives.module';
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     DataProvider,
-    ConfigProvider
+    ConfigProvider,
+    LoadingProvider,
+    UtilsProvider
   ]
 })
 export class AppModule { }
