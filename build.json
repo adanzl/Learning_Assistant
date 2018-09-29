@@ -1,0 +1,11 @@
+{
+  "android": {
+    "release": {
+      "keystore": "efficient_learning.keystore",
+      "storePassword": "1Q2w3e4r5t",
+      "alias": "efficient_learning",
+      "password": "1Q2w3e4r5t",
+      "keystoreType": ""
+    }
+  }
+}
