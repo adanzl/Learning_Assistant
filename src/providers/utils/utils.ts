@@ -18,4 +18,11 @@ export class UtilsProvider {
     return d;
   }
 
+  public Timetick2DateStr(timetick: string) {
+    if (!timetick) {
+      return ""
+    }
+    return new Date(Number.parseInt(timetick)).toLocaleDateString();
+  }
+
 }

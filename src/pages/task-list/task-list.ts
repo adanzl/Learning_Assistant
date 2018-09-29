@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, IonicPage, ModalController } from 'ionic-angular';
 import { DataProvider } from '../../providers/data/data';
+import { UtilsProvider } from '../../providers/utils/utils';
 
 @IonicPage()
 @Component({
@@ -12,7 +13,7 @@ export class TaskListPage {
   taskList: any = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController
-    , public dataProvider: DataProvider) {
+    , public dataProvider: DataProvider, public util: UtilsProvider) {
     // If we navigated to this page, we will have an item available as a nav param
     this.selectedItem = navParams.get('item');
 
@@ -24,7 +25,7 @@ export class TaskListPage {
   public showAddTaskPage() {
     const modal = this.modalCtrl.create('TaskDetailPage');
     modal.onDidDismiss(bNeedRefresh => {
-      if(bNeedRefresh){
+      if (bNeedRefresh) {
         this.ionViewDidLoad()
       }
     });
@@ -32,9 +33,9 @@ export class TaskListPage {
   }
 
   public showTaskDetail(taskNode) {
-    const modal = this.modalCtrl.create('TaskDetailPage', {'taskNode': taskNode});
+    const modal = this.modalCtrl.create('TaskDetailPage', { 'taskNode': taskNode });
     modal.onDidDismiss(bNeedRefresh => {
-      if(bNeedRefresh){
+      if (bNeedRefresh) {
         this.ionViewDidLoad()
       }
     });

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController, AlertController } from 'ionic-angular';
 import { DataProvider } from '../../providers/data/data';
+import { UtilsProvider } from '../../providers/utils/utils';
 
 /**
  * Generated class for the TaskDetailPage page.
@@ -30,10 +31,8 @@ export class TaskDetailPage {
 
   private task_learn_time: string;
 
-  private task_time_label: string;
-
   constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController
-    , public dataProvider: DataProvider, private alertCtrl: AlertController) {
+    , public dataProvider: DataProvider, private alertCtrl: AlertController, public util: UtilsProvider) {
     this._taskNode = navParams.get('taskNode')
     if (this._taskNode != null) {
       this.task_id = this._taskNode['id'];
@@ -43,7 +42,6 @@ export class TaskDetailPage {
       this.task_create_time = this._taskNode['create_time'];
       this.task_learn_time = this._taskNode['learn_time'];
     }
-    this.task_time_label = new Date(Number(this.task_create_time)).toLocaleDateString();
   }
 
   ionViewDidLoad() {
