@@ -31,6 +31,7 @@ export class DataProvider {
 
   SetSave(dataStr) {
     localStorage.setItem('save', dataStr);
+    this.Load()
   }
 
   AddTask(task) {

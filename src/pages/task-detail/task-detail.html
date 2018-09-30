@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar padding-horizontal>
-    <ion-input placeholder="标题：" [(ngModel)]="task_title"></ion-input>
+    <ion-title>Task</ion-title>
     <ion-buttons right>
       <button ion-button icon-only (click)="Del()" *ngIf="_taskNode != null">
         <ion-icon name="md-close-circle"></ion-icon>
@@ -19,17 +19,27 @@
 
 
 <ion-content>
-  <ion-item>
-    <ion-label>Create: {{util.Timetick2DateStr(task_create_time)}}</ion-label>
-    <ion-label>Learn: {{util.Timetick2DateStr(task_learn_time)}}</ion-label>
-  </ion-item>
-  <ion-item class="item-full">
-    <ion-textarea class="full" no-padding placeholder="内容：" [(ngModel)]="task_content"></ion-textarea>
-  </ion-item>
+  <form (ngSubmit)="Submit()" #taskForm="ngForm">
+    <ion-item item-right>
+      <ion-input class="task-title" type="text" autofocus placeholder="标题：" id=" t_title" name="t_title" [(ngModel)]="task_title"
+        required></ion-input>
+      <ion-icon item-right *ngIf="util.emptyString(task_title)" color="danger" name="ios-information-circle-outline"></ion-icon>
+    </ion-item>
+    <ion-item class="item-full">
+      <ion-textarea class="full" name='t_content' no-padding placeholder="内容：" [(ngModel)]="task_content"></ion-textarea>
+    </ion-item>
+  </form>
 </ion-content>
 <ion-footer>
+  <ion-item>
+    <ion-label>Create: {{util.Timetick2DateStr(task_create_time)}}</ion-label>
+
+    <ion-label>Learn: {{util.Timetick2DateStr(task_learn_time)}}</ion-label>
+  </ion-item>
   <ion-buttons>
-    <button ion-button class="button-full" (click)="Submit()">
+    <button ion-button class="button-full" (click)="taskForm.ngSubmit.emit()" [disabled]="util.emptyString(task_title)">
+      <!-- <button ion-button class="button-full" (click)="taskForm.ngSubmit.emit()"> -->
+      <!-- Apply -->
       Apply
     </button>
     <button ion-button class="button-full" (click)="Close(false)">

@@ -25,4 +25,8 @@ export class UtilsProvider {
     return new Date(Number.parseInt(timetick)).toLocaleDateString();
   }
 
+  public emptyString(str: string) {
+    return str == null || str == "" || str == undefined;
+  }
+
 }

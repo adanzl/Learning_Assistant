@@ -16,9 +16,7 @@
       </ion-item>
     </ion-col>
     <ion-col>
-      <ion-item>
-        <ion-label (click)="showTaskDetail(task)">{{task.title}}</ion-label>
-      </ion-item>
+      <button detail-push ion-item (click)="showTaskDetail(task)">{{task.title}}</button>
     </ion-col>
   </ion-row>
   <ion-label>FNISHED</ion-label>
@@ -29,9 +27,7 @@
       </ion-item>
     </ion-col>
     <ion-col>
-      <ion-item>
-        <ion-label (click)="showTaskDetail(task)">{{task.title}}</ion-label>
-      </ion-item>
+      <button detail-push ion-item (click)="showTaskDetail(task)">{{task.title}}</button>
     </ion-col>
   </ion-row>
 </ion-content>
