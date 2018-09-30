@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, AlertController } from 'ionic-angular';
 import { ModalController, IonicPage } from 'ionic-angular';
 import { DataProvider } from '../../providers/data/data';
 import { ConfigProvider } from '../../providers/config/config';
@@ -16,7 +16,7 @@ export class HomePage {
 
   constructor(public navCtrl: NavController, public modalCtrl: ModalController
     , public dataProvider: DataProvider, public configProvider: ConfigProvider
-    , public utils: UtilsProvider) {
+    , public utils: UtilsProvider, private alertCtrl: AlertController) {
 
   }
 
@@ -35,6 +35,11 @@ export class HomePage {
 
   public showTaskDetail(taskNode) {
     const modal = this.modalCtrl.create('TaskDetailPage', { 'taskNode': taskNode });
+    modal.onDidDismiss(bNeedRefresh => {
+      if (bNeedRefresh) {
+        this.ionViewDidLoad()
+      }
+    });
     modal.present();
   }
 
@@ -79,4 +84,29 @@ export class HomePage {
     this.RefreshPage();
   }
 
+  Del(task) {
+    let alert = this.alertCtrl.create({
+      title: 'Confirm',
+      message: 'Do you want to DEL this TASK?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'OK',
+          handler: () => {
+            if (task['taskId'] != null) {
+              this.dataProvider.RemoveTask(task['taskId'])
+            }
+            this.RefreshPage()
+          }
+        }
+      ]
+    });
+    alert.present();
+  }
 }

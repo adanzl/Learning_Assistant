@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { DataProvider } from '../../providers/data/data';
+import { Clipboard } from '@ionic-native/clipboard';
 
 /**
  * Generated class for the SavePage page.
@@ -18,7 +19,7 @@ export class SavePage {
 
   _dataStr: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,
+  constructor(public navCtrl: NavController, public navParams: NavParams, private clipboard: Clipboard,
     public dataProvider: DataProvider, private alertCtrl: AlertController) {
   }
 
@@ -49,5 +50,9 @@ export class SavePage {
       ]
     });
     alert.present();
+  }
+
+  CopySave() {
+    this.clipboard.copy(this._dataStr);
   }
 }

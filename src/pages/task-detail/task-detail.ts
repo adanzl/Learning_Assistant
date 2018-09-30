@@ -87,6 +87,7 @@ export class TaskDetailPage {
       "create_time": this.task_create_time
     }
     if (this.task_id != null) {
+      task['taskId'] = this.task_id
       this.dataProvider.UpdateTask(task)
     } else {
       this.dataProvider.AddTask(task)

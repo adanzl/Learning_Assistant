@@ -8,28 +8,34 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-label>TODO</ion-label>
-  <ion-row *ngFor="let task of undoTaskList">
-    <ion-col col-2>
-      <ion-item>
+  <ion-list>
+    <ion-label>TODO</ion-label>
+    <ion-item-sliding *ngFor="let task of undoTaskList">
+      <ion-item detail-push>
         <ion-checkbox checked='false' (ionChange)="UpdateTaskState(task, true)"></ion-checkbox>
+        <ion-label no-margin><button ion-item class="buttonWithCheckbox" full (click)="showTaskDetail(task)">{{task.title}}</button></ion-label>
       </ion-item>
-    </ion-col>
-    <ion-col>
-      <button detail-push ion-item (click)="showTaskDetail(task)">{{task.title}}</button>
-    </ion-col>
-  </ion-row>
-  <ion-label>FNISHED</ion-label>
-  <ion-row *ngFor="let task of finishTaskList">
-    <ion-col col-2>
-      <ion-item>
+      <ion-item-options side="right">
+        <button ion-button color="danger" (click)="Del(task)">
+          <ion-icon name="md-close-circle"></ion-icon>
+          DEL
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+    <ion-label>FINISHED</ion-label>
+    <ion-item-sliding *ngFor="let task of finishTaskList">
+      <ion-item detail-push>
         <ion-checkbox checked='true' (ionChange)="UpdateTaskState(task, false)"></ion-checkbox>
+        <ion-label no-margin><button ion-item class="buttonWithCheckbox" full (click)="showTaskDetail(task)">{{task.title}}</button></ion-label>
       </ion-item>
-    </ion-col>
-    <ion-col>
-      <button detail-push ion-item (click)="showTaskDetail(task)">{{task.title}}</button>
-    </ion-col>
-  </ion-row>
+      <ion-item-options side="right">
+        <button ion-button color="danger" (click)="Del(task)">
+          <ion-icon name="md-close-circle"></ion-icon>
+          DEL
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
 </ion-content>
 <ion-footer>
   <ion-buttons center>

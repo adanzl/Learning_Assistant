@@ -13,6 +13,7 @@ import { ConfigProvider } from '../providers/config/config';
 import { DirectivesModule } from '../directives/directives.module';
 import { LoadingProvider } from '../providers/loading/loading';
 import { UtilsProvider } from '../providers/utils/utils';
+import { Clipboard } from '@ionic-native/clipboard';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { UtilsProvider } from '../providers/utils/utils';
   providers: [
     StatusBar,
     SplashScreen,
+    Clipboard,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     DataProvider,
     ConfigProvider,

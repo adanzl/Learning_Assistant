@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, IonicPage, ModalController } from 'ionic-angular';
+import { NavController, NavParams, IonicPage, ModalController, AlertController } from 'ionic-angular';
 import { DataProvider } from '../../providers/data/data';
 import { UtilsProvider } from '../../providers/utils/utils';
 
@@ -13,7 +13,7 @@ export class TaskListPage {
   taskList: any = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController
-    , public dataProvider: DataProvider, public util: UtilsProvider) {
+    , public dataProvider: DataProvider, public util: UtilsProvider, private alertCtrl: AlertController) {
     // If we navigated to this page, we will have an item available as a nav param
     this.selectedItem = navParams.get('item');
 
@@ -50,5 +50,31 @@ export class TaskListPage {
       task['id'] = key
       this.taskList.push(task)
     }
+  }
+
+  Del(task) {
+    let alert = this.alertCtrl.create({
+      title: 'Confirm',
+      message: 'Do you want to DEL this TASK?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'OK',
+          handler: () => {
+            if (task['taskId'] != null) {
+              this.dataProvider.RemoveTask(task['taskId'])
+            }
+            this.ionViewDidLoad()
+          }
+        }
+      ]
+    });
+    alert.present();
   }
 }
