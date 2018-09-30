@@ -53,7 +53,11 @@ export class HomePage {
     for (var taskId in taskList) {
       let task = taskList[taskId]
       let taskCreateTime = new Date(Number(task['create_time']))
-      let nextRemindDate = this.utils.AddDate(taskCreateTime, timeline[task['learn_step']])
+      let currentStep = task['learn_step']
+      if (currentStep >= timeline.length) {
+        continue;
+      }
+      let nextRemindDate = this.utils.AddDate(taskCreateTime, timeline[currentStep])
       if (nextRemindDate <= new Date()) {
         this.undoTaskList.push(task);
       } else {
