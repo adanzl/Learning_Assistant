@@ -99,8 +99,8 @@ export class HomePage {
         {
           text: 'OK',
           handler: () => {
-            if (task['taskId'] != null) {
-              this.dataProvider.RemoveTask(task['taskId'])
+            if (task['id'] != null) {
+              this.dataProvider.RemoveTask(task['id'])
             }
             this.RefreshPage()
           }

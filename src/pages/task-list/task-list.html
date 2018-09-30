@@ -9,8 +9,8 @@
 
 <ion-content padding>
   <ion-list>
-    <ion-item-sliding *ngFor="let task of taskList" (click)="showTaskDetail(task)">
-      <button ion-item class="task_title_class">
+    <ion-item-sliding *ngFor="let task of taskList">
+      <button ion-item class="task_title_class" (click)="showTaskDetail(task)">
         {{task.title}}
         <div class="item-note" item-end>
           {{util.Timetick2DateStr(task.create_time)}}
